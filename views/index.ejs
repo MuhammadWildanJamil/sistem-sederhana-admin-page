@@ -1,0 +1,52 @@
+<%- include('partials/header', { title: 'Dashboard Pembelian' }) %>
+
+<div class="bg-white p-6 rounded-xl shadow-md">
+    <h1 class="text-2xl font-semibold text-gray-900 mb-5">Riwayat Transaksi</h1>
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pelanggan</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <% if (purchases.length === 0) { %>
+                    <tr>
+                        <td colspan="6" class="px-6 py-10 text-center text-gray-500">Belum ada data pembelian.</td>
+                    </tr>
+                <% } %>
+                <% purchases.forEach(p => { %>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">#<%= p.id %></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><%= p.customer_name %></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= new Date(p.purchase_date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Rp <%= new Intl.NumberFormat('id-ID').format(p.total_amount) %></td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <% if (p.status === 'Completed') { %>
+                                <span class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Selesai</span>
+                            <% } else { %>
+                                <span class="px-2.5 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Dibatalkan</span>
+                            <% } %>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <% if (p.status === 'Completed') { %>
+                                <form action="/purchases/<%= p.id %>/cancel" method="POST" onsubmit="return confirm('Anda yakin ingin membatalkan pembelian ini? Stok akan dikembalikan.');">
+                                    <button type="submit" class="text-red-600 hover:text-red-800 font-semibold">Batalkan</button>
+                                </form>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</main>
+</body>
+</html>
