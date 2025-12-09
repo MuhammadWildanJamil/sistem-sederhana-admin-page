@@ -26,11 +26,17 @@ Pastikan Anda telah menginstal perangkat lunak berikut:
     npm install
     ```
 
-3.  **Setup Database:**
-    - Buat sebuah database di MySQL dengan nama `xionco_db`.
-    - Buat user database (misalnya `xionco_admin`) dan berikan hak akses ke database `xionco_db`.
+3.  **Setup Database (menggunakan XAMPP):**
+    - Nyalakan **Apache** dan **MySQL** dari XAMPP Control Panel.
+    - Buka browser dan pergi ke `http://localhost/phpmyadmin`.
+    - Klik **New** di sidebar kiri, masukkan nama database `xionco_db`, dan klik **Create**.
+    - Setelah database dibuat, pilih database `xionco_db` tersebut.
+    - Klik tab **Import** di bagian atas.
+    - Klik **"Choose File"** dan pilih file `database/xionco_db.sql` dari dalam direktori proyek ini.
+    - Gulir ke bawah dan klik **Import**. Tabel dan data contoh akan ditambahkan ke database Anda.
 
 4.  **Konfigurasi Environment:**
+    - Pastikan Anda memiliki user dan password untuk mengakses database. Secara default, user XAMPP adalah `root` dengan password kosong.
     - Salin file `.env.example` menjadi `.env`.
       ```bash
       cp .env.example .env
@@ -38,7 +44,8 @@ Pastikan Anda telah menginstal perangkat lunak berikut:
     - Buka file `.env` dan sesuaikan nilai `DB_USER` dan `DB_PASSWORD` dengan konfigurasi database Anda.
 
 5.  **Jalankan Server:**
+    Gunakan perintah berikut untuk menjalankan server pengembangan:
     ```bash
-    node app.js
+    npm start
     ```
-    Server akan berjalan di `http://localhost:3000`.
+    Server akan berjalan di `http://localhost:3000`. Buka alamat tersebut di browser Anda.
