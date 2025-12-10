@@ -2,6 +2,11 @@
 
 Aplikasi web sederhana yang dibangun dengan Node.js, Express, dan Knex.js untuk manajemen data menggunakan database MySQL.
 
+## Screenshot
+
+![Screenshot](./assets/Screenshot1.png)
+![Screenshot](./assets/Screenshot2.png)
+
 ## Fitur
 - Framework Express.js untuk routing dan server.
 - Knex.js sebagai query builder untuk berinteraksi dengan database.
@@ -17,8 +22,8 @@ Pastikan Anda telah menginstal perangkat lunak berikut:
 
 1.  **Clone repositori ini:**
     ```bash
-    git clone https://github.com/NAMA_USER_ANDA/NAMA_REPO_ANDA.git
-    cd NAMA_REPO_ANDA
+    git clone https://github.com/MuhammadWildanJamil/sistem-sederhana-admin-page.git
+    cd sistem-sederhana-admin-page
     ```
 
 2.  **Install dependensi:**
